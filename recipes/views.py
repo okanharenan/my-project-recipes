@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+# Created view home 
+def home(request):
+    '''Criação da view home'''
+    return render(request,'recipes/base.html')
