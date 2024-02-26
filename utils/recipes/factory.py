@@ -9,8 +9,9 @@ fake = Faker('pt-BR')
 
 def make_recipes():
     return {
+        'id':fake.random_number(digits=2, fix_len=True),
         'title': fake.sentence(nb_words=6),
-        'description': fake.sentence(nb_word=12),
+        'description': fake.sentence(nb_words=12),
         'preparatio_time': fake.random_number(digits=2, fix_len=True),
         'preparation_time_unit': 'minutos',
         'servings': fake.random_number(digits=2, fix_len=True),
