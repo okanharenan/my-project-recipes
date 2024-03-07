@@ -540,3 +540,18 @@ h4 {
         grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
     }
 }
+
+.center {
+    text-align: center;
+    font-family: var(--font-headings);
+}
+
+/* generic */
+
+.m-x {
+    margin: 0 var(--spacing-gutter-medium);
+}
+
+.m-y {
+    margin: var(--spacing-gutter-medium) 0;
+}
