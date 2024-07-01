@@ -24,8 +24,11 @@ class RecipeModel(models.Model):
     update_at = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField( default=False )
     cover = models.ImageField(upload_to="recipes/cover/%Y/%m/%d/", null=True, blank=True, default=False)
-  
-  
 
-
-  
+    def __str__(self):
+        return self.title
+        """
+    Purpose: 
+    """
+    
+  # end def

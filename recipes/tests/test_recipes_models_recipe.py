@@ -33,7 +33,7 @@ class RecipeModelTest(RecipeTestBase):
             servings_unit='Porções',
             preparation_step='Recipe Preparation Steps',
             preparation_step_is_html=False,
-            is_published=True,
+            is_published=False,
     )
         recipe.full_clean()
         recipe.save()
@@ -44,4 +44,13 @@ class RecipeModelTest(RecipeTestBase):
         self.assertFalse(recipe.is_published,
                          msg="recipe is_published is not false")
         
-    
+    def test_recipe_string_representation(self):
+        needed = 'Testing Representation'
+        self.recipe.title = needed
+        self.recipe.full_clean()
+        self.recipe.save()
+        self.assertEqual(
+            str(self.recipe), needed,
+            msg=f'Recipe string representation must be '
+                f'"{needed}" but "{str(self.recipe)}" was received.'
+        )
