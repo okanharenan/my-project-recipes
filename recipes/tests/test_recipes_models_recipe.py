@@ -2,7 +2,7 @@
 from django.core.exceptions import ValidationError
 from parameterized import parameterized
 
-from .test_recipe_base import RecipeTestBase , RecipeModel 
+from .test_recipe_base import RecipeTestBase , RecipeModel, Category
 
 class RecipeModelTest(RecipeTestBase):
     def setUp(self) -> None:
@@ -54,3 +54,5 @@ class RecipeModelTest(RecipeTestBase):
             msg=f'Recipe string representation must be '
                 f'"{needed}" but "{str(self.recipe)}" was received.'
         )
+
+       
