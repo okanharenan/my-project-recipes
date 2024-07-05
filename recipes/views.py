@@ -37,4 +37,4 @@ def teste(request):
 
 def search(request):
 
-    return render(request, ...)
+    return render(request, 'recipes/pages/search.html')
