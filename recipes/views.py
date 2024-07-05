@@ -34,3 +34,7 @@ def recipe(request, id):
 
 def teste(request):
     return render(request, 'global/base.html')
+
+def search(request):
+
+    return render(request, ...)

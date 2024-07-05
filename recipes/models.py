@@ -13,7 +13,7 @@ class RecipeModel(models.Model):
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=65)
     description = models.CharField(verbose_name="Descrição", max_length=165)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     preparation_time = models.IntegerField(verbose_name="Tempo de prepro")
     preparation_time_unit =models.CharField(verbose_name="Preparação tempo de unidade", max_length=65)
     servings = models.CharField(verbose_name="Serve", max_length=3)

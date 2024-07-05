@@ -1,6 +1,6 @@
 <div class="recipe recipe-list-item">
     <div class="recipe-cover">
-        <a href="{% url 'recipes:recipes' recipe.id %}">
+        <a href="{% url 'recipes:recipes' recipe.id %}"  >
             <img src="{{recipe.cover.url}}" alt="img via placehold" srcset="">
         </a>
     </div>
@@ -36,22 +36,20 @@
     </div>
 
     <div class="recipe-content">
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni fugiat commodi ullam quas modi.
-            Ea cumque labore veniam, sequi corrupti quas beatae fuga alias quae, vero dicta accusamus
-            aliquam in!</p>
+        <p>{{recipe.description}}</p>
     </div>
 
     <div class="recipe-meta-container">
         <div class="recipe-meta recipe-preparation">
             <h3 class="recipe-meta-title"><i class="fas fa-stopwatch"></i> Preparo</h3>
             <div class="recipe-meta-text">
-                0 Minutos
+                {{recipe.preparation_time}} {{recipe.preparation_time_unit}}
             </div>
         </div>
         <div class="recipe-meta recipe-servings">
             <h3 class="recipe-meta-title"><i class="fas fa-pizza-slice"></i> Porções</h3>
             <div class="recipe-meta-text">
-                0 Porções
+                {{recipe.servings}} {{recipe.servings_unit}}
             </div>
         </div>
     </div>
