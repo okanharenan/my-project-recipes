@@ -42,8 +42,11 @@ def search(request):
         raise Http404()
     
     recipes = RecipeModel.objects.filter(
-        Q(title__icontains = search_term) |
-        Q(description__icontains = search_term),
+        Q(
+            Q(title__icontains = search_term) |
+            Q(description__icontains = search_term),
+        ), 
+        is_published = True    
     ).order_by('-id')
     return render(request, 'recipes/pages/search.html', {
         'page_title': f'search for "{search_term}" |',
