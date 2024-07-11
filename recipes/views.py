@@ -2,16 +2,29 @@ from django.db.models import Q
 from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.http import Http404, HttpResponse
 from utils.recipes.factory import make_recipes
+from utils.recipes.pagination import make_pagination_range
 from .models import RecipeModel
+from django.core.paginator import Paginator
 
 # Created view home 
 def home(request,):
-    '''Criação da view home'''
 
     recipe = RecipeModel.objects.filter(is_published=True).order_by('-id')
+    try:
+        current_page = int(request.GET.get('page', 1))
+    except ValueError:
+        current_page = 1
+    paginator = Paginator(recipe, 9 )
+    page_objt = paginator.get_page(current_page)
+    pagination_range = make_pagination_range(
+        paginator.page_range,
+        4,
+        current_page
+    )
 
     return render(request, 'recipes/pages/home.html', context={
-        'recipes': recipe
+        'recipes': page_objt,
+        'pagination_range': pagination_range
     })
 
 def category(request, id_category):
