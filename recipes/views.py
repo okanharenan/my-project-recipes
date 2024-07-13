@@ -7,7 +7,7 @@ from utils.recipes.pagination import make_pagination
 from .models import RecipeModel
 from django.core.paginator import Paginator
 
-PER_PAGE = os.environ.get('PER_PAGE', 6)
+PER_PAGE = int(os.environ.get('PER_PAGE', 6))
 
 # Created view home 
 def home(request,):
