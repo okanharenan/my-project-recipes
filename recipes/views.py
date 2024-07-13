@@ -5,6 +5,7 @@ from django.http import Http404, HttpResponse
 from utils.recipes.factory import make_recipes
 from utils.recipes.pagination import make_pagination
 from .models import RecipeModel
+from django.contrib import messages
 from django.core.paginator import Paginator
 
 PER_PAGE = int(os.environ.get('PER_PAGE', 6))
@@ -13,7 +14,7 @@ PER_PAGE = int(os.environ.get('PER_PAGE', 6))
 def home(request,):
 
     recipe = RecipeModel.objects.filter(is_published=True).order_by('-id')
-  
+    messages.success(request , "Seja bem vindo a pagina de recitas!")
     page_obj, pagination_range = make_pagination(request, recipe, PER_PAGE)
     return render(request, 'recipes/pages/home.html', context={
         'recipes':page_obj,
