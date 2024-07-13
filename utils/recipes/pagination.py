@@ -7,7 +7,7 @@ def make_pagination_range( page_range, qty_pages, current_page):
     stop_range= current_page + midle_range
     start_range_ofset = abs(start_range) if start_range < 0 else 0
     total_pages = len(page_range)
-      
+  
     if start_range <0:
         start_range = 0
         stop_range += start_range_ofset

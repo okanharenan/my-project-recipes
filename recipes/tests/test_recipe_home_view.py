@@ -17,11 +17,11 @@ class RecipeHomeViewTest(RecipeTestBase):
         #need a recipe for this test
         response = self.client.get(reverse('recipes:home'))
         content = response.content.decode('utf-8')
-        response_recipe = response.context['recipes']
+        response_recipe = response.context['recipe']
 
         # check if one recipe exists
         self.assertIn("teste", content)
-        self.assertEqual(response_recipe.first().title, 'teste')
+        self.assertEqual(response_recipe.title, 'teste')
         
 
     def test_home_view_status_code_200_ok(self):
