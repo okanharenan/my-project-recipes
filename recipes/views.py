@@ -12,9 +12,9 @@ PER_PAGE = int(os.environ.get('PER_PAGE', 6))
 
 # Created view home 
 def home(request,):
-
+    
     recipe = RecipeModel.objects.filter(is_published=True).order_by('-id')
-    messages.success(request , "Seja bem vindo a pagina de recitas!")
+
     page_obj, pagination_range = make_pagination(request, recipe, PER_PAGE)
     return render(request, 'recipes/pages/home.html', context={
         'recipes':page_obj,
