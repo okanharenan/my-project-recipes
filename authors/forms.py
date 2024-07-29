@@ -10,7 +10,7 @@ def strong_password(password):
             ('Password must have at letter one uppercase,'
              'one letter lowercase,'
              'one number. the lentgh should be at least 8 characters'),
-             code='Invalid'
+             code='invalid'
         )
     
 def add_attr(field, attr_name, attr_new_val):
@@ -29,18 +29,52 @@ class RegisterForm(forms.ModelForm):
         add_placeholder(self.fields['email'], 'Ex: youremail@email.com')
         add_attr(self.fields['first_name'], 'requerid', 'Fisrt_name must not be empty')
 
+    
+   
+    first_name = forms.CharField(
+            error_messages={'required': 'Write yuor first name'},
+            label='First name',
+            )
+    
+    last_name = forms.CharField(
+            error_messages={'required': 'Write yuor last name',},
+            label='Last name',
+            )
+    
+    username = forms.CharField(
+        error_messages= {'required':'This field must not be empty',
+                        'min_length':'Username must be have at least 4 characters',
+                        'max_length': 'Username must have less than 150 characters'},
+        label='Username',
+        help_text=('Username must have letters, numbers or one be of those @.+-_,'
+                   'the length should be  between 4 and 150 characters'),
+                   min_length=4 , max_length=150
+
+    )
+
+    email = forms.EmailField(
+        error_messages={'required': 'the E-mail must be valid'},
+        label='E-mail',
+         help_text = 'the E-mail must be valid'
+    
+    )
 
     password = forms.CharField(
         required=True,
         widget = forms.PasswordInput(attrs= {'placeholder': 'Your Password'}),
         error_messages= {
-            'required' : 'Password must not be empty'
+            'required' : 'Password must not be empty',
+            
         },
         help_text=('Password must have at letter one uppercase,'
                    'one letter lowercase,'
                    'one number. the lentgh should be at least 8 characters'),
-                   
-        validators = [strong_password]
+
+        validators = [strong_password],
+
+        label='Password',
+
+        
         
     )
 
@@ -49,7 +83,9 @@ class RegisterForm(forms.ModelForm):
         widget = forms.PasswordInput(attrs= {'placeholder': 'Repeat your Password'}),
          error_messages= {
             'required' : 'Password must not be empty'
-        }
+        },
+
+        label='Password2'
     )
     class Meta:
         model = User
@@ -59,27 +95,10 @@ class RegisterForm(forms.ModelForm):
             'username',
             'email',
             'password',
+            'password2'
         ]
 
-        labels = {
-            'first_name': 'First name',
-            'last_name': 'Last name',
-            'username' : 'Username',
-            'password' : 'Password',
-        }
-
-        help_texts = {
-            'email': 'the E-mail must be valid'
-        }
-
-        error_messages = {
-            'username': {
-                'requerid': 'This field must not be empty'
-            }
-        }
-
-    
-
+           
     def clean(self):
         cleaned_data = super().clean()
         password = cleaned_data.get('password')
